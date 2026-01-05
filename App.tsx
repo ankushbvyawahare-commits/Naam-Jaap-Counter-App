@@ -15,7 +15,10 @@ const App: React.FC = () => {
   const [showCelebration, setShowCelebration] = useState(false);
   
   const [selectedLanguage, setSelectedLanguage] = useState<Language>(LANGUAGES[0]);
-  const [currentChant, setCurrentChant] = useState<ChantPreset>(CHANTS_BY_LANGUAGE[LANGUAGES[0].id][0]);
+  // Default to Radha chant from the first language (Sanskrit)
+  const [currentChant, setCurrentChant] = useState<ChantPreset>(
+    CHANTS_BY_LANGUAGE[LANGUAGES[0].id].find(c => c.name === 'Radha') || CHANTS_BY_LANGUAGE[LANGUAGES[0].id][0]
+  );
   const [customChant, setCustomChant] = useState({ name: '', nativeName: '' });
   const [goal, setGoal] = useState<GoalConfig>({ type: GoalType.DAILY, value: 1000 });
 
